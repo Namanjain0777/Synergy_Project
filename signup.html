@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            background-image: linear-gradient(315deg, #44b09e 0%, #e0d2c7 74%);
+        }   
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 0 5px #999999;
+            border-radius: 10px;
+            padding: 20px;
+            align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: #040404;
+            margin-bottom: 20px;
+            margin-left: -25px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-container .form-button {
+            padding: 10px;
+            background-color: #fafafa;
+            color: #050505;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container .form-button:hover {
+            background-color: #fdfffe;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        .form-container label {
+        display: block;
+        margin-bottom: 10px;
+        color: rgb(255, 254, 254);
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div>
+                    <input type="submit" value="Sign Up" class="form-button">
+                </div>
+                <div class="error-message" id="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var errorMessage = document.getElementById('error-message');
+
+            if (username && password && confirmPassword) {
+                if (password === confirmPassword) {
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('password', password);
+                    window.location.href = 'index.html';
+                } else {
+                    errorMessage.textContent = 'Passwords do not match.';
+                }
+            } else {
+                errorMessage.textContent = 'Please fill out all fields.';
+            }
+        });
+    </script>
+</body>
+</html>
