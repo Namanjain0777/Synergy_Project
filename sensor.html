@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IR Sensor Data</title>
+    <style>
+        .sensor-container {
+            width: 400px;
+            padding: 20px;
+            margin: 50px auto;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .sensor-value {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body style="background-color: #44b09e; background-image: linear-gradient(315deg, #44b09e 0%, #e0d2c7 74%);">
+    <div class="sensor-container">
+        <h2>IR Sensor Data</h2>
+        <div class="sensor-value" id="sensorValue">Loading...</div>
+    </div>
+
+    <script>
+        function updateSensorData() {
+            fetch('http://localhost:3000/sensor-data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('sensorValue').textContent = 
+                        `Sensor Value: ${data.value || 'No data'}`;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(updateSensorData, 1000);
+        updateSensorData();
+    </script>
+</body>
+</html>
