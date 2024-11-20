@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Tracking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            background-image: linear-gradient(315deg, #44b09e 0%, #e0d2c7 74%);
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #44b09e;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        .tracking-box {
+            width: 400px;
+            padding: 20px;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            text-align: center;
+            color: #050505;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-info span {
+            margin-right: 10px;
+            color: #040404;
+        }
+
+        .logout-button {
+            background: none;
+            border: none;
+            padding: 0;
+            color: rgb(4, 4, 4);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .direction-button {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: #000500;
+            color: white;
+            border: none;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .direction-button:hover {
+            background-color: #45a049;
+        }
+
+        .direction-icon {
+            margin-right: 10px;
+            font-size: 30px;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .tracking-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="uses.html">Uses</a></li>
+            <li><a href="sensor.html">IR Sensor Data</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <h1>Gesture Controlled Movable Bot</h1>
+    <div class="container">
+        <div class="tracking-box">
+            <h1>Live Tracking</h1>
+            <button class="direction-button">
+                <span class="direction-icon">&#8593;</span> Forward
+            </button>
+            <button class="direction-button">
+                <span class="direction-icon">&#8595;</span> Backward
+            </button>
+            <button class="direction-button">
+                <span class="direction-icon">&#8594;</span> Right
+            </button>
+            <button class="direction-button">
+                <span class="direction-icon">&#8592;</span> Left
+            </button>
+        </div>
+        <div class="user-info top-right">
+            <span id="username"></span>
+            <button class="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('username').textContent = username;
+            }
+
+            document.querySelector('.logout-button').addEventListener('click', function() {
+                localStorage.removeItem('username');
+                window.location.href = 'index.html';
+            });
+        }
+    </script>
+</body>
+</html>

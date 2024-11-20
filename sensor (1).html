@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IR Sensor Data</title>
+    <style>
+        body {
+            background: #f4f7fa; /* Clean and professional light gray background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Back button styling */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background-color: #44b09e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #38a089;
+            transform: scale(1.05);
+        }
+
+        /* Sensor Container Styling */
+        .sensor-container {
+            width: 400px;
+            padding: 20px;
+            margin: 100px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Sensor Value Styling */
+        .sensor-value {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            animation: fadeInText 1s forwards;
+        }
+
+        /* Fade-in effect for sensor value */
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Fade-in effect for sensor container */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.history.back()">← Back</button>
+
+    <!-- Sensor Data Container -->
+    <div class="sensor-container">
+        <h2>IR Sensor Data</h2>
+        <div class="sensor-value" id="sensorValue">Loading...</div>
+    </div>
+
+    <script>
+        // Function to update sensor data from the server
+        function updateSensorData() {
+            fetch('http://localhost:3000/sensor-data')
+                .then(response => response.json())
+                .then(data => {
+                    // Update the sensor value on the page
+                    const sensorValue = document.getElementById('sensorValue');
+                    sensorValue.textContent = `Sensor Value: ${data.value || 'No data'}`;
+
+                    // Triggering the fade-in animation again for the sensor value
+                    sensorValue.style.animation = 'none';  // Reset animation
+                    sensorValue.offsetHeight; // Trigger reflow to reset the animation
+                    sensorValue.style.animation = 'fadeInText 1s forwards';  // Apply fade-in animation
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('sensorValue').textContent = 'Error fetching data';
+                });
+        }
+
+        // Update sensor data every second
+        setInterval(updateSensorData, 1000);
+        updateSensorData(); // Initial call to fetch data
+    </script>
+</body>
+</html>

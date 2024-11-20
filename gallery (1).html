@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uses</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #ffffff;
+            color: #44b09e;
+            border: 2px solid #44b09e;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .back-button:hover {
+            background-color: #44b09e;
+            color: #ffffff;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        .gallery-item {
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .gallery-item img, .gallery-item video {
+            max-width: 300px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body style="background-color: #44b09e; background-image: linear-gradient(315deg, #44b09e 0%, #e0d2c7 74%);">
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+
+    <div class="wrapper">
+        <div class="content">
+            <div class="gallery-item">
+                <img src="1.jpg" alt="Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="2.jpg" alt="Image 2">
+            </div>
+            <div class="gallery-item">
+                <video controls autoplay>
+                    <source src="3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

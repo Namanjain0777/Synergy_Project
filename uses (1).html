@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uses</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Back Button Styling */
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #44b09e;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .back-button:hover {
+            background-color: #44b09e;
+            color: #ffffff;
+        }
+
+        /* Content Container */
+        .container {
+            padding: 20px;
+        }
+
+        /* List Styling */
+        .content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content ul li {
+            margin: 10px 0;
+            padding: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #000000;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .content ul li:hover {
+            transform: scale(1.05);
+            background-color: #41c52d;
+            color: #fff;
+        }
+
+        /* Dynamic Gradient Background */
+        .background {
+            animation: gradientBackground 5s ease infinite;
+            background-size: 400% 400%;
+            background-image: #000000;
+        }
+
+        
+
+        /* Fade-In Effect */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="background">
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="content fade-in">
+                <h2>Uses</h2>
+                <ul>
+                    <li>Assistive Technology: Provides mobility solutions for individuals with limited hand movement or disabilities, allowing them to control vehicles or wheelchairs through simple gestures.</li>
+                    <li>Industrial Automation: Enables hands-free control of machinery in manufacturing environments, improving safety and efficiency in situations where traditional controls may be impractical.</li>
+                    <li>Search and Rescue Operations: Facilitates the navigation of small, agile robots in disaster areas or confined spaces, allowing rescuers to control the devices remotely with intuitive gestures.</li>
+                    <li>Interactive Exhibitions: Enhances museum or science center displays by allowing visitors to control exhibit elements through gestures, creating an engaging and immersive learning experience.</li>
+                    <li>Drone Control: Offers an alternative method for piloting drones, potentially simplifying the control process and making drone operation more accessible to novice users.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Object-Oriented JavaScript for Animation Control
+        class ListItemAnimator {
+            constructor(selector) {
+                this.items = document.querySelectorAll(selector);
+            }
+
+            // Function to add hover effect
+            addHoverEffect() {
+                this.items.forEach(item => {
+                    item.addEventListener('mouseover', () => {
+                        item.style.transform = 'scale(1.1)';
+                        item.style.backgroundColor = '#ffbd00';
+                        item.style.color = '#fff';
+                    });
+
+                    item.addEventListener('mouseout', () => {
+                        item.style.transform = 'scale(1)';
+                        item.style.backgroundColor = '';
+                        item.style.color = '';
+                    });
+                });
+            }
+
+            // Function to add fade-in effect
+            addFadeInEffect() {
+                this.items.forEach(item => {
+                    item.classList.add('fade-in');
+                });
+            }
+        }
+
+        // Instantiate the ListItemAnimator class
+        const animator = new ListItemAnimator('li');
+        animator.addHoverEffect();  // Add hover effect to list items
+        animator.addFadeInEffect(); // Add fade-in effect on page load
+    </script>
+</body>
+</html>
